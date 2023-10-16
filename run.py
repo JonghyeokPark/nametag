@@ -100,6 +100,7 @@ def write_slide(prs, index, names, affiliations):
             font.name="Malgun Gothic"
             affiliation_idx+=1
 
+## (jhpark): I refer to this [link](https://stackoverflow.com/questions/50866634/how-to-copy-a-slide-with-python-pptx)
 def delete_slide(prs, index):
     id_dict = { slide.id: [i, slide.rId] for i,slide in enumerate(prs.slides._sldIdLst) }
     slide_id = prs.slides[index].slide_id
