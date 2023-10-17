@@ -37,5 +37,5 @@ python3 run.py
 ## Contact
 
 - Author: Jonghyeok Park 
-- Homepage: [IDS Lab.](ids.hufs.ac.kr)
+- Homepage: [IDS Lab.](http://ids.hufs.ac.kr)
 - E-mail: jonghyeok.park@hufs.ac.kr
