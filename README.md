@@ -20,7 +20,7 @@ pip install python-pptx
 ## Prepare
 
 학회 이름표를 생성하기 위해서는 다음과 같은 파일을 준비해야 합니다.   
-- `template.pptx` : 학회 이름표 형식 템플릿입니다. 본 파일은 [NVRAMOS 2023](https://sigfast.or.kr/nvramos/nvramos23/) 학회 이름표 템플릿 파일입니다.
+- `template.pptx` : 학회 이름표 형식 템플릿입니다. 본 파일은 [NVRAMOS 2024](https://sigfast.or.kr/nvramos/nvramos24/) 학회 이름표 템플릿 파일입니다.
 - `list.xlsx` : 학회 참석 등록자 명단
    
 `template.pptx` 파일은 파워포인트 개체 요소 (예: 텍스트 상자)가 학회 참석등록자 이름, 소속에 맞게 미리 개체이름이 지정이 되었습니다.
@@ -38,4 +38,4 @@ python3 run.py
 
 - Author: Jonghyeok Park 
 - Homepage: [IDS Lab.](http://ids.hufs.ac.kr)
-- E-mail: jonghyeok.park@hufs.ac.kr
+- E-mail: jonghyeok_park@korea.ac.kr
