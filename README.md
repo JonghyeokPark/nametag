@@ -25,6 +25,9 @@ pip install requests
 - `template.pptx` : 학회 이름표 형식 템플릿입니다. 본 파일은 [NVRAMOS 2024](https://sigfast.or.kr/nvramos/nvramos24/) 학회 이름표 템플릿 파일입니다.
 - `list.xlsx` : 학회 참석 등록자 명단
    
+또는, 참석 현황 URL이 있다면 해당 URL을 사용하여 이름표를 생성합니다. 
+`prepare_data_v1` 함수 참고.
+
 `template.pptx` 파일은 파워포인트 개체 요소 (예: 텍스트 상자)가 학회 참석등록자 이름, 소속에 맞게 미리 개체이름이 지정이 되었습니다.
 파워포인트에서 `편집 > 선택 > 선택창` 을 누르면 해당 개체 이름을 지정할 수 있습니다.
 본 프로젝트에서는 `name` 과 `affiliation` 으로 지정하였고, 한 slide 당 4개의 이름표를 생성합니다.

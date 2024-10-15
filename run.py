@@ -10,7 +10,7 @@ import math
 
 import requests
 from bs4 import BeautifulSoup
-
+import re
 
 ## Prepare data
 ## Our xlsx file has the following format
@@ -35,6 +35,15 @@ from bs4 import BeautifulSoup
             <td>FULL</td>
 """
 
+def check_korean_name(name):
+    return all('\uac00' <= char <= '\ud7a3' or char.isspace() for char in name)
+
+def swap_korean_name(name):
+    token = name.split()
+    if len(token) == 2:  # convert first name + last name to last name + first name
+        return f"{token[1]} {token[0]}"  # 이름 성으로 변경
+    return name
+
 names = []
 affiliations = []
 
@@ -55,6 +64,10 @@ def prepare_data_v1():
         if len(cells) >= 5:  # Name과 Affiliation이 포함된 5개 이상의 열이 있는 경우
             name = cells[1].get_text(strip=True)  # cell[1] means name
             affiliation = cells[4].get_text(strip=True)  # dell[4] means affiliation
+
+            if check_korean_name(name):
+                name = swap_korean_name(name)
+
             names.append(name)
             affiliations.append(affiliation)
             total+=1
