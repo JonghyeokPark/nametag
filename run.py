@@ -1,5 +1,6 @@
 from pptx import Presentation, parts
 from pptx.enum.text import PP_ALIGN
+
 from pptx.util import Pt
 
 from openpyxl import load_workbook
@@ -7,14 +8,63 @@ import copy
 import os 
 import math
 
+import requests
+from bs4 import BeautifulSoup
+
+
 ## Prepare data
 ## Our xlsx file has the following format
 ## | No | Name | Affiliation | ETC | ETC | ... 
+"""
+<thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Job Title</th>
+            <th>E-Mail</th>
+            <th>Affiliation</th>
+            <th>Registration Type</th>
+        </tr>
+    </thead>
+    <tbody id='personal_infos_tbody'><tr>
+            <td>1</td> 
+            <td>Jonghyeok Park</td>
+            <td>Assistant Professor</td>
+            <td>jonghyeok_park@korea.ac.kr</td>
+            <td>Korea University</td>
+            <td>FULL</td>
+"""
 
 names = []
 affiliations = []
 
-def prepare_data():
+def prepare_data_v1():
+    total = 0
+    url = "https://www.sigfast.or.kr/nvramos/nvramos24/reg/check.php"
+    response = requests.get(url)
+    if response.status_code != 200:
+        print(f"Failed to retrieve the server. Status code: {response.status_code}")
+        return None
+
+    soup = BeautifulSoup(response.content, 'html.parser')
+    tbl_body = soup.find('tbody', {'id': 'personal_infos_tbody'})
+    tbl_rows = tbl_body.find_all('tr')
+
+    for row in tbl_rows:
+        cells = row.find_all('td')
+        if len(cells) >= 5:  # Name과 Affiliation이 포함된 5개 이상의 열이 있는 경우
+            name = cells[1].get_text(strip=True)  # cell[1] means name
+            affiliation = cells[4].get_text(strip=True)  # dell[4] means affiliation
+            names.append(name)
+            affiliations.append(affiliation)
+            total+=1
+    # debug
+    #print(f"names:{names}")
+    #print(f"affiliation:{affiliations}")
+
+    return total
+
+def prepare_data_v0():
     total = 0
     read_xlsx = load_workbook(r'list.xlsx')
     read_sheet = read_xlsx.active
@@ -128,8 +178,8 @@ def make(prs,total,names,affiliations):
       
 
 def main():
-    print("Welcom Nametag v0.1")
-    total = prepare_data()
+    print("Welcom Nametag v0.2")
+    total = prepare_data_v1()
     print(f"Total # of registants: {total}")
     make(prs,total,names,affiliations)
 

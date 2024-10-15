@@ -15,6 +15,8 @@ source .venv/bin/activate
 ```
 pip install openpyxl
 pip install python-pptx
+pip install beautifulsoup4
+pip install requests
 ```
 
 ## Prepare
