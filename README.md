@@ -13,16 +13,13 @@ source .venv/bin/activate
 ## Install Python Packages
 
 ```
-pip install openpyxl
-pip install python-pptx
-pip install beautifulsoup4
-pip install requests
+pip install -r requirements.txt
 ```
 
 ## Prepare
 
 학회 이름표를 생성하기 위해서는 다음과 같은 파일을 준비해야 합니다.   
-- `template.pptx` : 학회 이름표 형식 템플릿입니다. 본 파일은 [NVRAMOS 2024](https://sigfast.or.kr/nvramos/nvramos24/) 학회 이름표 템플릿 파일입니다.
+- `template.pptx` : 학회 이름표 형식 템플릿입니다. 본 파일은 [NVRAMOS 2025](https://sigfast.or.kr/nvramos/nvramos25/) 학회 이름표 템플릿 파일입니다.
 - `list.xlsx` : 학회 참석 등록자 명단
    
 또는, 참석 현황 URL이 있다면 해당 URL을 사용하여 이름표를 생성합니다. 
@@ -39,8 +36,10 @@ pip install requests
 python3 run.py
 ```
 
+## 
+
 ## Contact
 
 - Author: Jonghyeok Park 
-- Homepage: [IDS Lab.](http://ids.hufs.ac.kr)
+- Homepage: [DBS Lab.](http://dbs.korea.ac.kr)
 - E-mail: jonghyeok_park@korea.ac.kr

@@ -161,3 +161,6 @@ cython_debug/
 
 output.pptx
 .DS_Store
+
+nametag.pdf
+nametag.pptx

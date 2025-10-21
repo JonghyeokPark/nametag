@@ -49,7 +49,36 @@ affiliations = []
 
 def prepare_data_v1():
     total = 0
-    url = "https://www.sigfast.or.kr/nvramos/nvramos24/reg/check.php"
+    url = "https://sample-url.php"
+
+    '''
+    아래와 같은 등록자 명단 관리한다고 가정함.
+    <thead>
+        <tr>
+            <th>Select</th>
+            <th>#</th>
+            <th>Name</th>
+            <th>Korean Name</th>
+            <th>Job Title</th>
+            <th>E-Mail</th>
+            <th>Affiliation</th>
+            <th>Registration Type</th>
+        </tr>
+    </thead>
+    <tbody id='personal_infos_tbody'>
+    <tr>
+                    <td><input type='checkbox' name='ids[]' value='1'></td>
+                    <td>1</td>
+                    <td>Jonghyeok Park</td>
+                    <td>박종혁</td>
+                    <td>조교수</td>
+                    <td>jonghyeok_park@korea.ac.kr</td>
+                    <td>Korea University</td>
+                    <td>FULL</td>
+    </tr> ...
+    '''
+
+
     response = requests.get(url)
     if response.status_code != 200:
         print(f"Failed to retrieve the server. Status code: {response.status_code}")
@@ -62,11 +91,11 @@ def prepare_data_v1():
     for row in tbl_rows:
         cells = row.find_all('td')
         if len(cells) >= 5:  # Name과 Affiliation이 포함된 5개 이상의 열이 있는 경우
-            name = cells[1].get_text(strip=True)  # cell[1] means name
-            affiliation = cells[4].get_text(strip=True)  # dell[4] means affiliation
+            name = cells[2].get_text(strip=True)  # cell[1] means name
+            affiliation = cells[6].get_text(strip=True)  # dell[4] means affiliation
 
-            if check_korean_name(name):
-                name = swap_korean_name(name)
+            #if check_korean_name(name):
+            #    name = swap_korean_name(name)
 
             names.append(name)
             affiliations.append(affiliation)
@@ -191,8 +220,11 @@ def make(prs,total,names,affiliations):
       
 
 def main():
-    print("Welcom Nametag v0.2")
-    total = prepare_data_v1()
+    #print("Welcom Nametag v0.2")
+    #total = prepare_data_v1()
+
+    print("Welcom Nametag v0.1")
+    total = prepare_data_v0()
     print(f"Total # of registants: {total}")
     make(prs,total,names,affiliations)
 
